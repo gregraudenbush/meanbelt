@@ -1,0 +1,27 @@
+<h1>{{ user.name }}, Post Your Question!</h1>
+<h3> <a [routerLink]="['/wall']">Home</a> </h3>  
+ <h3> <a [routerLink]="['/']">Logout</a></h3>
+
+ <div class="form1" >
+  <p style="color: red;">{{ message }}</p>
+  <form (submit)="newQ()">
+    
+      Question: 
+      
+    <textarea name="quest" rows="10" cols="30" value=""
+        [(ngModel)] = "question.text"
+        #quest="ngModel"
+    ></textarea>
+     Description:
+     (Optional) 
+      
+    <textarea name="description" rows="10" cols="30" value=""
+        [(ngModel)] = "question.desc"
+        #description="ngModel"
+    ></textarea>
+      
+    <input type="submit" name="submit" value="submit" style="width:200px; background-color: lightgreen;">
+  
+  </form>
+   <button (click)="cancel()" type="button" name="cancel" style="width:200px; background-color: red;">Cancel</button> 
+</div>

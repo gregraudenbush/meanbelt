@@ -1,0 +1,26 @@
+<h3> <a [routerLink]="['/wall']">Home</a></h3> 
+<h3> <a [routerLink]="['/']">Logout</a></h3> 
+
+ <div class="form1" >
+  <p style="color: red;">{{ message }}</p>
+  <form (submit)="newA()">
+    
+      Answer: 
+      
+    <textarea name="answ" rows="10" cols="30" value=""
+        [(ngModel)] = "answer.text"
+        #answ="ngModel"
+    ></textarea><br>
+     Supporting Info:
+     (Optional) 
+      
+    <textarea name="description" rows="10" cols="30" value=""
+        [(ngModel)] = "answ.desc"
+        #description="ngModel"
+    ></textarea><br>
+      
+    <input type="submit" name="submit" value="submit" style="width:200px; background-color: lightgreen;">
+  
+  </form>
+   <button (click)="cancel()" type="button" name="cancel" style="width:200px; background-color: red;">Cancel</button> 
+</div>

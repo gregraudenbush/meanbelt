@@ -1,0 +1,17 @@
+<h1>Q&A</h1>
+
+<div class="form1" >
+  <p style="color: red;">{{ message }}</p>
+  <form (submit)="login()">
+    
+      Name: 
+      
+    <input type="text" name="username" value=""
+        [(ngModel)] = "user.name"
+        #username="ngModel"
+    >
+      
+    <input type="submit" name="submit" value="Enter" style="width:200px; background-color: lightgreen;">
+  
+  </form>
+</div>

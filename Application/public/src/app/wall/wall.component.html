@@ -1,0 +1,23 @@
+<h1>Hi {{ user.name }}</h1>
+<h3> <a [routerLink]="['/add']">Add A Question</a> </h3>  
+ <h3> <a [routerLink]="['/']">Logout</a></h3> 
+ <form>
+   Search:
+   <input type="text" name="search">
+   <!-- <input type="submit" name="submit" value="Enter" style="width:200px; background-color: lightgreen;"> -->
+ </form>
+<br><br>
+ <table style="width:75%">
+  <tr >
+    <th>Question</th>
+    <th>Answers</th> 
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let item of questions">
+    <td>{{ item.text }}</td>
+    <td>0</td> 
+     <td> <a href="{{item._id}}/show">Show </a>  
+        <a href="{{item._id}}/newanswer"> Answer </a>   
+    </td> 
+  </tr>
+</table>
