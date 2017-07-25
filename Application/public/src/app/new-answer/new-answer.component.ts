@@ -37,7 +37,7 @@ export class NewAnswerComponent implements OnInit {
   newA(){
     console.log("newq button working")
     console.log(this.answer.text,this.answer.user)
-    this._userService.newQ(this.question)
+    this._userService.newQ(this.answer)
     .then((aback)=> { 
       if(!aback.error){
         console.log(aback);
