@@ -1,28 +1,29 @@
 var mongoose = require('mongoose');
 // Importing User model, using mongoose getter method -- look at model page for more info
 var User = mongoose.model('User');
-var Question = mongoose.model('Question')
-var Answer = mongoose.model('Answer')
+var Poll = mongoose.model('Poll')
+
 module.exports ={
 	index: function(req, res){
 		console.log('find function users controller /server/controllers/users.js');
-		Question.find({}, function(err, quest){
+		Poll.find({}, function(err, poll){
 			if(err){
 				console.log(err);
 				res.json({error: true, errors: err})
 			} else {
-				res.json(quest);
+				res.json(poll);
 			}
 		})		
 	},
-	OneQ: function(req, res){
-		console.log('find function users controller /server/controllers/users.js');
-		User.findOne({id: req.body}, function(err, quest){
+	OnePoll: function(req, res){
+		console.log('find function controll' + req.body.id);
+		Poll.findOne({_id: req.params.id}, function(err, poll){
 			if(err){
-				console.log(err);
-				res.json({error: true, errors: err})
+				console.log("error at controller " + err);
+				res.status(404).json({error: true, errors: err})
 			} else {
-				res.json(quest);
+				console.log("back from find")
+				res.json({poll: poll});
 			}
 		})		
 	},
@@ -42,22 +43,112 @@ module.exports ={
 					}
 				})
 	},
-	newQ: function(req, res){
+	newPoll: function(req, res){
 		console.log('controller newQ activate');
-			var question =new Question({text: req.body.text, desc: req.body.desc})
+			var poll =new Poll({text: req.body.text, option: req.body.option, vote: req.body.vote, user: req.body.user})
 				
 				console.log(req.body.text + " passed in controller register")
-				question.save(function(err){
+				poll.save(function(err){
 					console.log(req.body.text + " passed in controller register")				
 					if(err){
-						
+						console.log("didnt make it back " + err)
 						res.json({error: true, errors: err});
 					} else {
 						console.log("made it back from db")
-						res.json(user);
+						res.json(poll);
 					}
 				})
 	},
+			delete: function(req, res, next){
+    	console.log("question remove started")
+    	console.log(req.body.id)
+			Poll.remove({_id: req.body.id})
+			.exec(function(err, data) {
+				if(err){
+					console.log("Remove question error: " + err);
+					} else {
+						console.log(data);
+					res.json({ status: true})
+					}
+			});
+			},
+	
+		vote1: function(req, res){
+     console.log(req.body.id)
+     Poll.findOne({_id: req.body.id})
+     .exec(function(err, data) {
+       if(err){
+         console.log(" Vote  error: " + err);
+         } else {
+           data.vote.opt1 += 1
+           data.save(function(err){
+             if(err){
+               res.json({status:false})
+             } else{
+               res.json({status:"succsess"})
+             }
+           })
+         
+         }
+      });
+	},
+	vote2: function(req, res){
+     console.log(req.body.id)
+     Poll.findOne({_id: req.body.id})
+     .exec(function(err, data) {
+       if(err){
+         console.log(" Vote  error: " + err);
+         } else {
+           data.vote.opt2 += 1
+           data.save(function(err){
+             if(err){
+               res.json({status:false})
+             } else{
+               res.json({status:"succsess"})
+             }
+           })
+         
+         }
+      });
+	},
+		vote3: function(req, res){
+     console.log(req.body.id)
+     Poll.findOne({_id: req.body.id})
+     .exec(function(err, data) {
+       if(err){
+         console.log(" Vote  error: " + err);
+         } else {
+           data.vote.opt3 += 1
+           data.save(function(err){
+             if(err){
+               res.json({status:false})
+             } else{
+               res.json({status:"succsess"})
+             }
+           })
+         
+         }
+      });
+	},
+vote4: function(req, res){
+     console.log(req.body.id)
+     Poll.findOne({_id: req.body.id})
+     .exec(function(err, data) {
+       if(err){
+         console.log(" Vote  error: " + err);
+         } else {
+           data.vote.opt4 += 1
+           data.save(function(err){
+             if(err){
+               res.json({status:false})
+             } else{
+               res.json({status:"succsess"})
+             }
+           })
+         
+         }
+      });
+	},			
 	
 	// this.show = function(req, res){
 	// 	// retrieve single user

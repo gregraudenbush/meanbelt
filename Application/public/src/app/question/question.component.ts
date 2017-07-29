@@ -12,18 +12,29 @@ export class QuestionComponent implements OnInit {
 
   constructor(public _userService: UserService, public _router: Router) { }
   user = this._userService.user
-  question = {
+  poll = {
     text: null,
-    desc: null,
-    user: this.user.name
+    option: { 
+      opt1: null,
+      opt2: null,
+      opt3: null,
+      opt4: null
+    },
+    vote: { 
+      opt1: 0,
+      opt2: 0,
+      opt3: 0,
+      opt4: 0
+    },
+    user: this._userService.user.name
   }
   message = ""
   ngOnInit() {
   }
   newQ(){
     console.log("newq button working")
-    console.log(this.question.text,this.question.user)
-    this._userService.newQ(this.question)
+    console.log(this.poll.text,this.poll.user)
+    this._userService.newPoll(this.poll)
     .then((qback)=> { 
       if(!qback.error){
         console.log(qback);
@@ -33,13 +44,10 @@ export class QuestionComponent implements OnInit {
         this.message = qback.message 
       }
     })  
+    this._router.navigate(["wall"])
   }
   cancel(){
     console.log("cancel button working")
-    this.question = {
-    text: null,
-    desc: null,
-    user: this.user.name
-  }
+    this._router.navigate(["wall"])
   }
 }

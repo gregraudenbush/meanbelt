@@ -14,8 +14,5 @@ export class AppComponent {
 
   }
 
-  getUsers(){
-    console.log("GETTING Users");
-    this._userService.getUsers();
-  }
+  
 }

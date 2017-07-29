@@ -1,22 +1,31 @@
-<h1>Hi {{ user.name }}</h1>
-<h3> <a [routerLink]="['/add']">Add A Question</a> </h3>  
+<h3>Current Polls </h3>
+<h3> <a [routerLink]="['/add']">Create a Poll</a> </h3>  
  <h3> <a [routerLink]="['/']">Logout</a></h3> 
- <form>
+ <form (submit)="search()">
+   
    Search:
-   <input type="text" name="search">
+   <input type="text" name="search11"
+   [(ngModel)]="search1.poll"
+   #search11="ngModel"
+   >
+   <input type="submit" value="search">
  </form>
 <br><br>
  <table style="width:75%">
   <tr >
-    <th>Question</th>
+    <th>Name</th>
+    <th>Survey Question</th>
     <th>Answers</th> 
     <th>Action</th>
   </tr>
-  <tr *ngFor="let item of questions">
-    <td>{{ item.text }}</td>
-    <td>0</td> 
-     <td> <a href="{{item._id}}/show">Show </a>  
+  <tr *ngFor="let item of polls">
+    <td>{{ item.user }}</td>
+    <td><a href="show/{{item._id}}">{{ item.text }}</a></td>
+    <td>{{ item.createdAt | date: medium}}</td>
+    <td *ngIf="user.name == item.user"><button (click)="delete(item._id)">Delete</button></td>
+    
+     <!-- <td> <a href="{{item._id}}/show">Show </a>  
         <a href="{{item._id}}/newanswer"> Answer </a>   
-    </td> 
+    </td>  -->
   </tr>
 </table>

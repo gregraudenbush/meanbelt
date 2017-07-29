@@ -9,7 +9,7 @@ import { AppRoutingModule } from './routing.module';
 import { LoginComponent } from './login/login.component';
 import { WallComponent } from './wall/wall.component';
 import { QuestionComponent } from './question/question.component';
-import { NewAnswerComponent } from './new-answer/new-answer.component';
+
 import { QuestshowComponent } from './questshow/questshow.component';
 
 
@@ -19,7 +19,6 @@ import { QuestshowComponent } from './questshow/questshow.component';
     LoginComponent,
     WallComponent,
     QuestionComponent,
-    NewAnswerComponent,
     QuestshowComponent
   ],
   imports: [

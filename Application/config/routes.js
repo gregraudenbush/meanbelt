@@ -3,55 +3,48 @@ var mongoose = require('mongoose');
 
 var user = require('../controllers/users.js');
 var User = mongoose.model('User');
-var Question = mongoose.model('Question')
-var Answer = mongoose.model('Answer')
+var Poll = mongoose.model('Poll')
+
 module.exports = function(app){
     
     app.post('/login', (req, res, next)=>{  
     console.log(req.body.name + " made it to routs.js login" )
     user.login(req, res)
   });
-    app.post('/newQ', (req, res, next)=>{  
+    app.post('/newPoll', (req, res, next)=>{  
     console.log(req.body.text + " made it to routs.js login" )
-    user.newQ(req, res)
+    user.newPoll(req, res)
   });
     app.get("/index", user.index)
 
-app.get("/oneQ", function(req, res){
-    console.log("made it to routes.js")
-    user.OneQ(req, res)
+    app.get("/OnePoll/:id", user.OnePoll)
+
+    app.post('/delete', (req, res, next)=>{
+    user.delete(req,res, next)
   });
 
+    app.post('/vote1', (req, res, next)=>{
+		console.log("made it to routes" + req.body.id)
+    user.vote1(req, res, next);
+    });
+    app.post('/vote2', (req, res, next)=>{
+		console.log("made it to routes" + req.body.id)
+    user.vote2(req, res, next);
+    });
+    app.post('/vote3', (req, res, next)=>{
+		console.log("made it to routes" + req.body.id)
+    user.vote3(req, res, next);
+    });
+  app.post('/vote4', (req, res, next)=>{
+		console.log("made it to routes" + req.body.id)
+    user.vote4(req, res, next);
+    });
+
+
+    
     app.all("*", (req,res,next) => {
         res.sendfile(path.resolve("./public/dist/index.html"))
     })
     
 }
 
-// // You can use restful or semi restful routes for your application
-// // Remember that we're dealing with angular which will take care 
-// // of rendering static pages for us so some of these routes might 
-// // be unnecessary
-
-// // The edit and new route might not be necessary. You will only need 
-// // these routes if the data you are retrieving is different than the 
-// // data you retrieve for show, angular will take care of displaying 
-// // static pages like new in the front end
-
-// // FUll RESTFUL
-// // get "/users" => UsersController index => grab all users
-// // get "/users/:id" => UsersController show => grab one user
-// // get "/users/:id/edit" => UsersController edit => show edit user page
-// // get "/users/new" => UsersController new => show new user page
-// // post "/users" => UsersController create => create a user
-// // patch/put "/users/:id" => UsersController update => update a user
-// // delete "/users/:id" => UsersController destroy => destroy a user
-
-// // SEMI RESTFUL -- look at destroy and update methods
-// // get "/users" => UsersController index => grab all users
-// // get "/users/:id" => UsersController show => grab one user
-// // get "/users/:id/edit" => UsersController edit => show edit user page
-// // get "/users/new" => UsersController new => show new user page
-// // post "/users" => UsersController create => create a user
-// // post "/users/:id/update" => UsersController update => update a user
-// // post "/users/:id/destroy" => UsersController destroy => destroy a user

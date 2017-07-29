@@ -1,17 +1,24 @@
-<h1>Q&A</h1>
+<h2>poll</h2>
+<h6>Login</h6>
 
 <div class="form1" >
   <p style="color: red;">{{ message }}</p>
   <form (submit)="login()">
-    
-      Name: 
+   <table>
+    <tr> 
+      <td>username </td>
       
-    <input type="text" name="username" value=""
+    <td><input type="text" name="username" value=""
         [(ngModel)] = "user.name"
         #username="ngModel"
     >
-      
-    <input type="submit" name="submit" value="Enter" style="width:200px; background-color: lightgreen;">
+        </td>
+    </tr>
   
+    <tr>
+
+    <td><input type="submit" name="submit" value="Enter" ></td>
+    </tr>
+   </table>
   </form>
 </div>

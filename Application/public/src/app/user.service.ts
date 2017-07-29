@@ -15,27 +15,61 @@ export class UserService {
       .map( data => data.json() )
       .toPromise()     
   }
-    newQ(question){
+    newPoll(poll){
     
-    console.log(question.text + " is a question in service.ts" + question.user )
-    return this._http.post('/newQ', question)
+    console.log(poll.text + " is a question in service.ts" + poll.user )
+    return this._http.post('/newPoll', poll)
       .map( data => data.json() )
       .toPromise()     
   }
-    findQ(){
-    console.log("USER SERVICE METHOD findQ"); 
+    findPoll(){
+    console.log("service findpoll"); 
      return this._http.get('/index')
      .map(data=>data.json())
      .toPromise()
      
   }
-     OneQ(id){
-    console.log("USER SERVICE METHOD OneQ"); 
-     return this._http.get('/OneQ', id)
+     OnePoll(id){
+     console.log("USER SERVICE METHOD OneQ" + id.id); 
+     return this._http.get('/OnePoll/' + id.id)
      .map(data=>data.json())
      .toPromise()
      
   }
+    vote1(id){
+      
+     console.log("vote 1 " + id.id); 
+     return this._http.post('/vote1', id)
+     .map(data=>data.json())
+     .toPromise()
+    }
+    vote2(id){
+      
+     console.log("vote 2 " + id.id); 
+     return this._http.post('/vote2', id)
+     .map(data=>data.json())
+     .toPromise()
+    }
+    vote3(id){
+      
+     console.log("vote 3 " + id.id); 
+     return this._http.post('/vote3', id)
+     .map(data=>data.json())
+     .toPromise()
+    }
+    vote4(id){
+      
+     console.log("vote 4 " + id.id); 
+     return this._http.post('/vote4', id)
+     .map(data=>data.json())
+     .toPromise()
+    }
+    
+  delete(data){
+    return this._http.post("/delete",data)
+    .map( data => data.json() )
+    .toPromise();
+  };
   
 
 }

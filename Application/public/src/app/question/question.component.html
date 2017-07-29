@@ -1,27 +1,123 @@
-<h1>{{ user.name }}, Post Your Question!</h1>
-<h3> <a [routerLink]="['/wall']">Home</a> </h3>  
- <h3> <a [routerLink]="['/']">Logout</a></h3>
 
- <div class="form1" >
+<h3> <a [routerLink]="['/wall']">Cancel</a> </h3>  
+ <!-- <h3> <a [routerLink]="['/']">Logout</a></h3> -->
+
+ <div >
   <p style="color: red;">{{ message }}</p>
   <form (submit)="newQ()">
-    
-      Question: 
-      
-    <textarea name="quest" rows="10" cols="30" value=""
-        [(ngModel)] = "question.text"
-        #quest="ngModel"
-    ></textarea>
-     Description:
-     (Optional) 
-      
-    <textarea name="description" rows="10" cols="30" value=""
-        [(ngModel)] = "question.desc"
-        #description="ngModel"
-    ></textarea>
-      
-    <input type="submit" name="submit" value="submit" style="width:200px; background-color: lightgreen;">
-  
+    <table>  
+        <tr>
+            <td>Question:</td> 
+            
+            <td><input type="text" name="quest"  value=""
+                required
+                minlength="8"
+                [(ngModel)] = "poll.text"
+                #quest="ngModel"
+            columns="200"></td>
+            <td>
+                <div *ngIf="quest.errors && (quest.dirty || quest.touched)"
+                    class="err">
+                    <div  [hidden]="!quest.errors.required" style="color: red">
+                      Question is required
+                    </div>
+                    <div [hidden]="!quest.errors.minlength" style="color: red">
+                         Question must be at least 8 characters long.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr> 
+            <td>Option 1:</td>
+            
+            <td><input type="text" name="option1"  value=""
+                required
+                minlength="3"
+                [(ngModel)] = "poll.option.opt1"
+                #option1="ngModel"
+            ></td>
+            <td>
+                <div *ngIf="option1.errors && (option1.dirty || option1.touched)"
+                    class="err">
+                    <div  [hidden]="!option1.errors.required" style="color: red">
+                      Option 1 is required
+                    </div>
+                    <div [hidden]="!option1.errors.minlength" style="color: red">
+                         Option must be at least 3 characters long.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Option 2:</td>
+            
+            <td><input type="text" name="option2"  value=""
+                required
+                minlength="3"
+                [(ngModel)] = "poll.option.opt2"
+                #option2="ngModel"
+            ></td>
+            <td>
+                <div *ngIf="option2.errors && (option2.dirty || option2.touched)"
+                    class="err">
+                    <div  [hidden]="!option2.errors.required" style="color: red">
+                      Option 2 is required
+                    </div>
+                    <div [hidden]="!option2.errors.minlength" style="color: red">
+                         Option must be at least 3 characters long.
+                    </div>
+                </div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Option 3:</td>
+            
+            <td><input type="text" name="option3"  value=""
+                required
+                minlength="3"
+                [(ngModel)] = "poll.option.opt3"
+                #option3="ngModel"
+            ></td>
+            <td>
+                <div *ngIf="option3.errors && (option3.dirty || option3.touched)"
+                    class="err">
+                    <div  [hidden]="!option3.errors.required" style="color: red">
+                      Option 3 is required
+                    </div>
+                    <div [hidden]="!option3.errors.minlength" style="color: red">
+                         Option must be at least 3 characters long.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Option 4:</td>
+            
+            <td><input type="text" name="option4"  value=""
+                required
+                minlength="3"
+                [(ngModel)] = "poll.option.opt4"
+                #option4="ngModel"
+            ></td>
+            <td>
+                <div *ngIf="option4.errors && (option3.dirty || option3.touched)"
+                    class="err">
+                    <div  [hidden]="!option4.errors.required" style="color: red">
+                      Option 4 is required
+                    </div>
+                    <div [hidden]="!option4.errors.minlength" style="color: red">
+                         Option must be at least 3 characters long.
+                    </div>
+                </div>
+            </td>
+            
+        </tr>
+
+
+            <input type="submit" name="submit" value="Create Poll" style="width:200px; background-color: lightgreen;">
+    </table>
   </form>
-   <button (click)="cancel()" type="button" name="cancel" style="width:200px; background-color: red;">Cancel</button> 
+   
+
 </div>
