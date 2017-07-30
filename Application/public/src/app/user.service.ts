@@ -7,7 +7,7 @@ export class UserService {
   constructor(public _http: Http) { 
 
   }
-  user = null
+  user = ""
   loginUser(user){
     this.user = user
     console.log(user.name + " is in service.ts")
