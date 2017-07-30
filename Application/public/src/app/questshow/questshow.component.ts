@@ -27,7 +27,7 @@ export class QuestshowComponent implements OnInit {
     // this.sub = this._route.params.subscribe(params => {
     // this.id = +params['id']
     // });
-    
+    this.OnePoll()
     
   }
  poll ={poll: {
@@ -61,11 +61,15 @@ export class QuestshowComponent implements OnInit {
     console.log("vote 1 working " + this.pollsearch.id)
     this._userService.vote1(this.pollsearch)
     .then( data => { 
-      console.log(data.message)
-      console.log("back from vote1")
+      if(!data.status){
+       console.log(data.message)
+      } else {
+        this.ngOnInit()
+      }
      })
     .catch( err => { console.log("error"); + "get" })
-    this.OnePoll()
+            
+
 
   }
   // vote(val){
@@ -92,29 +96,41 @@ export class QuestshowComponent implements OnInit {
 vote2(){
     this._userService.vote2(this.pollsearch)
     .then( data => { 
-      console.log(data.message)
-      console.log("back from vote2")
+      if(!data.status){
+       console.log(data.message)
+      } else {
+        this.ngOnInit()
+      }
      })
     .catch( err => { console.log("error"); + "get" })
-     this.OnePoll()
+             
+
   }
   vote3(){
     this._userService.vote3(this.pollsearch)
     .then( data => { 
-      console.log(data.message)
-      console.log("back from vote3")
+      if(!data.status){
+       console.log(data.message)
+      } else {
+        this.ngOnInit()
+      }
      })
     .catch( err => { console.log("error"); + "get" })
-     this.OnePoll()
+             
+
   }
   vote4(){
     this._userService.vote4(this.pollsearch)
     .then( data => { 
-      console.log(data.message)
-      console.log("back from vote4")
+      if(!data.status){
+       console.log(data.message)
+      } else {
+        this.ngOnInit()
+      }
      })
     .catch( err => { console.log("error"); + "get" })
-     this.OnePoll()
+             
+
   }
 }
 // this.poll = onepoll
